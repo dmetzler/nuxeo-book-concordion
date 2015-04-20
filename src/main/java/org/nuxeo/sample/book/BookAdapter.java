@@ -145,7 +145,7 @@ public class BookAdapter implements Book {
     }
 
     private void safeSetString(QName prop, String value) {
-        doc.setPropertyValue(prop.getPrefixedName(), value.replace("the Ring", "my Precious"));
+        doc.setPropertyValue(prop.getPrefixedName(), value);
     }
 
     private String safeGetString(QName prop) {

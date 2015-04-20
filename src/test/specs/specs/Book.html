@@ -1,0 +1,95 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+
+<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+
+
+<link href="../concordion.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+  <h1>Book CSV Import</h1>
+
+
+  <p>In order to search in our books, our library must be able to
+    store a Book and its properties. A book has those properties :</p>
+  <ul>
+    <li>a title</li>
+    <li>an autor</li>
+    <li>a year of publication</li>
+    <li>an ISBN</li>
+    <li>a description</li>
+    <li>a creation date</li>
+    <li>a modification date</li>
+  </ul>
+
+  <div class="example">
+    <h3>Example</h3>
+    <p>
+      When the file <b concordion:set="#importFile">books_samples_1.csv</b>
+      is <b concordion:execute="importCSV(#importFile)">imported</b>, then
+      the number of <b concordion:set="#doctype">Book</b> in the system is
+      <b concordion:assertEquals="getDocCount(#doctype)">4</b>.
+    </p>
+
+    <p>Given their ISBN, the following books must have those
+      properties:</p>
+    <table concordion:execute="#book = findBookByISBN(#isbn)">
+      <tr>
+        <th concordion:set="#isbn">ISBN</th>
+        <th concordion:assertEquals="#book.title">Title</th>
+        <th concordion:assertEquals="#book.author">Author</th>
+        <th concordion:assertEquals="#book.publicationYear">Publication
+          Year</th>
+        <th concordion:assertEquals="#book.description">Description</th>
+        <th concordion:assertTrue="isCreatedNow(#book)">Creation date</th>
+        <th concordion:assertTrue="isModifiedNow(#book)">Modification
+          date</th>
+      </tr>
+      <tr>
+        <td>0618002219</td>
+        <td>The Hobbit</td>
+        <td>J.R.R. Tolkien</td>
+        <td>1937</td>
+        <td>There and Back Again</td>
+        <td>Now</td>
+        <td>Now</td>
+      </tr>
+      <tr>
+        <td>0618002227</td>
+        <td>The Fellowship of the Ring</td>
+        <td>J.R.R. Tolkien</td>
+        <td>1954</td>
+        <td></td>
+        <td>Now</td>
+        <td>Now</td>
+      </tr>
+      <tr>
+        <td>0618002238</td>
+        <td>The Two Towers</td>
+        <td>J.R.R. Tolkien</td>
+        <td>1954</td>
+        <td></td>
+        <td>Now</td>
+        <td>Now</td>
+      </tr>
+      <tr>
+        <td>0618002248</td>
+        <td>The Return of the King</td>
+        <td>J.R.R. Tolkien</td>
+        <td>1955</td>
+        <td></td>
+        <td>Now</td>
+        <td>Now</td>
+      </tr>
+    </table>
+  </div>
+
+  <h3>Additional specifications</h3>
+  <ul>
+    <li>ISBN validity</li>
+    <li>Creation/Modification date</li>
+  </ul>
+
+</body>
+</html>

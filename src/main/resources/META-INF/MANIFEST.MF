@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: org.nuxeo.sample.book.sbe
+Bundle-Version: 1.0.0
+Bundle-Name: book-sbe
+Bundle-ManifestVersion: 1
+Bundle-Vendor: Nuxeo
+Nuxeo-Component: OSGI-INF/core-types-contrib.xml
+
